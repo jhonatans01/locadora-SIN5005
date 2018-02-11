@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <ui:decorate template="/publico/template/template.xhtml">
+        <ui:define name="conteudo">
+            <h:body>
+                <div id="login-overlay" class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Faça login no site</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="well">
+                                        <form id="loginForm" method="POST" action="#{request.contextPath}/j_spring_security_check">
+                                            <div class="form-group">
+                                                <label for="j_username" class="control-label">Login</label>
+                                                <h:inputText class="form-control" id="j_username" size="15" required=""/>
+
+
+
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="j_password" class="control-label">Senha</label>
+                                                <h:inputSecret class="form-control" id="j_password" size="15" required=""/>     		  
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <div id="loginErrorMsg" class="alert alert-error hide">Usuário e/ ou senha inválidos!</div>
+
+                                            <h:commandButton id="btnLogar" class="btn btn-success btn-block" 
+                                                             value="Login" type="submit"/>  
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p class="lead">Registre-se agora <span class="text-success">gratuitamente</span></p>
+                                    <ul class="list-unstyled" style="line-height: 2">
+                                        <li><span class="fa fa-check text-success"></span> Veja seus alugueis</li>
+                                        <li><span class="fa fa-check text-success"></span> Alugue novamente</li>
+                                        <li><span class="fa fa-check text-success"></span> Acesso fácil e rápido</li>
+                                    </ul>
+                                    <h:form>
+                                        <p><h:commandLink action="novoCadastro" class="btn btn-info btn-block"
+                                                          value="Registrar-se agora"/></p>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </h:body>
+        </ui:define>
+    </ui:decorate>
+</html>

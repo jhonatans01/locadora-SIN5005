@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<b:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:b="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+ 
+    <http auto-config="true">
+        <form-login login-page="/publico/login.xhtml"
+                    default-target-url = "/publico/home.xhtml"
+                    authentication-failure-url="/publico/login.xhtml?error=true" />
+        <logout logout-success-url="/publico/home.xhtml" />
+ 
+        <intercept-url pattern="/restrito/aluguel/*"
+                       access="ROLE_USER" />
+        <intercept-url pattern="/restrito/*" 
+                       access="ROLE_ADMIN" />
+        <intercept-url pattern="/restrito/veiculo/*" 
+                       access="ROLE_ADMIN" />
+    </http>
+ 
+    <authentication-manager>
+        <authentication-provider user-service-ref="myUserDetailsService"/>
+    </authentication-manager>
+    
+    <b:bean 
+        id="myUserDetailsService"
+        class="locadora.rn.LoginSpring">
+    </b:bean>
+</b:beans>
